@@ -1,0 +1,25 @@
+table 'Material Type'
+	lineageTag: 616d59ad-2387-4915-8eef-1e4ef5e00858
+
+	column 'Material Type'
+		dataType: string
+		lineageTag: 7b2b53c6-d51a-484f-88ff-dce15fdfbd90
+		summarizeBy: none
+		sourceColumn: Material Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Material Type' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("G:\My Drive\Power BI Projects\Supplier Insights\Challenge 10 supplier data.xlsx"), null, true),
+				    #"Material Type_Sheet" = Source{[Item="Material Type",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Material Type_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Material Type ID", Int64.Type}, {"Material Type", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Material Type ID"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

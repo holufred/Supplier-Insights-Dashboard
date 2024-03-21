@@ -1,0 +1,25 @@
+table 'Defect Type'
+	lineageTag: e1a7a194-ac12-4159-8ab8-a118ae8793e6
+
+	column 'Defect Type'
+		dataType: string
+		lineageTag: 9ce07e5f-6a8c-4d14-87b9-433d19418511
+		summarizeBy: none
+		sourceColumn: Defect Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Defect Type' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("G:\My Drive\Power BI Projects\Supplier Insights\Challenge 10 supplier data.xlsx"), null, true),
+				    #"Defect Type_Sheet" = Source{[Item="Defect Type",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Defect Type_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Defect Type ID", Int64.Type}, {"Defect Type", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Defect Type ID"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

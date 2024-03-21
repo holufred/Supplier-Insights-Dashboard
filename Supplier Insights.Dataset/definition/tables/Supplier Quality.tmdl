@@ -1,0 +1,114 @@
+table 'Supplier Quality'
+	lineageTag: be97ad4f-2436-4744-bd7d-5439f7433652
+
+	column Date
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: dd615739-a78f-4cda-82df-94b58f0ee0df
+		summarizeBy: none
+		sourceColumn: Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Vendor
+		dataType: string
+		isHidden
+		lineageTag: dc5f8758-0537-4fef-aae9-94c45400d29f
+		summarizeBy: none
+		sourceColumn: Vendor
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Plant Location'
+		dataType: string
+		isHidden
+		lineageTag: ee8406a8-7772-4b21-af3f-974863b20d28
+		summarizeBy: none
+		sourceColumn: Plant Location
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		isHidden
+		lineageTag: 118f26eb-931c-494e-9b3b-d8e5cdc9fe1b
+		summarizeBy: none
+		sourceColumn: Category
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Material Type'
+		dataType: string
+		isHidden
+		lineageTag: 9f54b05d-4f13-4654-8763-589b8ae13131
+		summarizeBy: none
+		sourceColumn: Material Type
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Defect Type'
+		dataType: string
+		isHidden
+		lineageTag: 5d8ecff0-3a03-4541-ba38-b86d0c087ba4
+		summarizeBy: none
+		sourceColumn: Defect Type
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Defect
+		dataType: string
+		isHidden
+		lineageTag: 02b01d9b-a99f-4c16-9b9b-ea16358da2fc
+		summarizeBy: none
+		sourceColumn: Defect
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Defect Qty'
+		dataType: int64
+		formatString: 0
+		lineageTag: 84b5183e-9c43-48ee-b349-c5ce7b94adcd
+		summarizeBy: sum
+		sourceColumn: Total Defect Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Downtime Minutes'
+		dataType: int64
+		formatString: 0
+		lineageTag: 51397bac-5e2e-4e7a-b4ec-cfa481203296
+		summarizeBy: sum
+		sourceColumn: Total Downtime Minutes
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Supplier Quality' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("G:\My Drive\Power BI Projects\Supplier Insights\Challenge 10 supplier data.xlsx"), null, true),
+				    #"Supplier Quality_Sheet" = Source{[Item="Supplier Quality",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Supplier Quality_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Vendor", type text}, {"Plant Location", type text}, {"Category", type text}, {"Material Type", type text}, {"Defect Type", type text}, {"Defect", type text}, {"Total Defect Qty", Int64.Type}, {"Total Downtime Minutes", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,25 @@
+table Category
+	lineageTag: 6edd3782-e9a5-4261-8b10-d8038c43af58
+
+	column Category
+		dataType: string
+		lineageTag: a0151c82-2230-4406-b344-571cbf248675
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Category = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("G:\My Drive\Power BI Projects\Supplier Insights\Challenge 10 supplier data.xlsx"), null, true),
+				    Category_Sheet = Source{[Item="Category",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Category_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Category ID", Int64.Type}, {"Category", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Category ID"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

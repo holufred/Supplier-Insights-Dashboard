@@ -1,0 +1,28 @@
+relationship eb1093c1-dbe0-468f-91fb-c298c54b8c03
+	fromColumn: 'Supplier Quality'.Category
+	toColumn: Category.Category
+
+relationship e34d07df-243c-471b-9005-79fc8e5dddb4
+	fromColumn: 'Supplier Quality'.Defect
+	toColumn: Defect.Defect
+
+relationship 9310c8b1-2323-4565-8176-12feb44871e4
+	fromColumn: 'Supplier Quality'.'Defect Type'
+	toColumn: 'Defect Type'.'Defect Type'
+
+relationship e98ce322-7cdb-4516-b7ce-ed8f2549faca
+	fromColumn: 'Supplier Quality'.'Material Type'
+	toColumn: 'Material Type'.'Material Type'
+
+relationship 80dddb64-b908-4676-b62d-a9246c7ff7ae
+	fromColumn: 'Supplier Quality'.Vendor
+	toColumn: Vendor.Vendor
+
+relationship b3ccb91c-ee02-430c-b74b-4ff9bcb3740e
+	fromColumn: 'Supplier Quality'.Date
+	toColumn: Date.Date
+
+relationship 26ee9603-a267-4ac8-9fa2-5be31fb50e5b
+	fromColumn: 'Supplier Quality'.'Plant Location'
+	toColumn: Plant.Plant
+

@@ -1,0 +1,26 @@
+table Plant
+	lineageTag: 1962260c-886b-49ba-a446-bb60fe132ea2
+
+	column Plant
+		dataType: string
+		lineageTag: 0c4e20e6-5ddd-4538-b488-4825e431a7ec
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Plant = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("G:\My Drive\Power BI Projects\Supplier Insights\Challenge 10 supplier data.xlsx"), null, true),
+				    Plant_Sheet = Source{[Item="Plant",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Plant_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Plant ID", Int64.Type}, {"Plant", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Plant ID"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

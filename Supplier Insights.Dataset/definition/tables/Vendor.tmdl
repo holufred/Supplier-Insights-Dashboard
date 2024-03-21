@@ -1,0 +1,29 @@
+table Vendor
+	lineageTag: da34cf64-b967-4d06-babb-84ea98e529a0
+
+	column Vendor
+		dataType: string
+		lineageTag: ec3ed88a-6de9-416c-87b7-03d972b830b7
+		summarizeBy: none
+		sourceColumn: Vendor
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Vendor = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("G:\My Drive\Power BI Projects\Supplier Insights\Challenge 10 supplier data.xlsx"), null, true),
+				    #"Supplier Quality_Sheet" = Source{[Item="Supplier Quality",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Supplier Quality_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Vendor", type text}, {"Plant Location", type text}, {"Category", type text}, {"Material Type", type text}, {"Defect Type", type text}, {"Defect", type text}, {"Total Defect Qty", Int64.Type}, {"Total Downtime Minutes", Int64.Type}}),
+				    Vendor1 = #"Changed Type"[Vendor],
+				    #"Removed Duplicates" = List.Distinct(Vendor1),
+				    #"Converted to Table" = Table.FromList(#"Removed Duplicates", Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Renamed Columns" = Table.RenameColumns(#"Converted to Table",{{"Column1", "Vendor"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns",{{"Vendor", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+

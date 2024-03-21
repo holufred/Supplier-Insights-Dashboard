@@ -1,0 +1,152 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 612.44082846020433
+          },
+          "nodeIndex": "Category",
+          "nodeLineageTag": "6edd3782-e9a5-4261-8b10-d8038c43af58",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 970.45336882238394,
+            "y": 54.220414230102165
+          },
+          "nodeIndex": "Date",
+          "nodeLineageTag": "0c413a38-14ac-40d9-80b3-1be8aec6466a",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 253.01384216872077
+          },
+          "nodeIndex": "Defect",
+          "nodeLineageTag": "c80be9dd-d7fb-4b87-a638-7b3579e2d659",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 925.45336882238394,
+            "y": 425.05391572834367
+          },
+          "nodeIndex": "Defect Type",
+          "nodeLineageTag": "e1a7a194-ac12-4159-8ab8-a118ae8793e6",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 469.86067682990955,
+            "y": -10
+          },
+          "nodeIndex": "Material Type",
+          "nodeLineageTag": "616d59ad-2387-4915-8eef-1e4ef5e00858",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 545.45336882238394,
+            "y": 851.22041423010216
+          },
+          "nodeIndex": "Plant",
+          "nodeLineageTag": "1962260c-886b-49ba-a446-bb60fe132ea2",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 462.22648757403044,
+            "y": 354.19962832282522
+          },
+          "nodeIndex": "Supplier Quality",
+          "nodeLineageTag": "be97ad4f-2436-4744-bd7d-5439f7433652",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 87.710874836413666,
+            "y": -9.9917337345552824
+          },
+          "nodeIndex": "Vendor",
+          "nodeLineageTag": "da34cf64-b967-4d06-babb-84ea98e529a0",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1700.4533688223839,
+            "y": 527.610207115051
+          },
+          "nodeIndex": "_Measures",
+          "nodeLineageTag": "45089009-fab9-48ba-bad5-5a5f2d17346c",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 1538.4533688223839,
+            "y": 286.61020711505108
+          },
+          "nodeIndex": "TopN",
+          "nodeLineageTag": "579f22d7-7e7b-4613-ae2a-2f93c4be31f6",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 9
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}
